@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation"
+    app:startDestination="@id/usersFragment">
+
+
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.masoudk.ui.list.UsersFragment"
+        android:label="Users" >
+
+        <action
+            android:id="@+id/action_usersFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.masoudk.ui.detail.UserDetailFragment"
+        android:label="Detail" >
+
+        <argument
+            android:name="user"
+            app:argType="com.masoudk.repository.Name" />
+
+    </fragment>
+
+</navigation>
