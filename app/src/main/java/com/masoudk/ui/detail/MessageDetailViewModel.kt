@@ -7,11 +7,11 @@ import com.masoudk.ui.model.Message
 
 class MessageDetailViewModel : ViewModel() {
 
-    private var _user = MutableLiveData<Message>()
-    val user : LiveData<Message> = _user
+    private var _message = MutableLiveData<Message>()
+    val message : LiveData<Message> = _message
 
     fun setUser(user: Message){
-        _user.value = user
+        _message.value = user
     }
 
 }

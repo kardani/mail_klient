@@ -30,8 +30,8 @@ class InboxFragment : BaseFragment(), UsersClickListener {
 
     }
 
-    override fun click(user: Message) {
-        val destination = InboxFragmentDirections.actionUsersFragmentToUserDetailFragment(user)
+    override fun click(message: Message) {
+        val destination = InboxFragmentDirections.actionUsersFragmentToUserDetailFragment(message)
         findNavController().navigate(destination)
     }
 }

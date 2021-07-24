@@ -22,6 +22,7 @@
         app:bindUsers="@{viewModel.users}"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
+        tools:listitem="@layout/layout_message_item"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

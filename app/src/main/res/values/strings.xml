@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Mail Client!</string>
+    <string name="unread">Unread</string>
 </resources>

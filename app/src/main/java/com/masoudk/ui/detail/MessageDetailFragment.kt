@@ -25,7 +25,9 @@ class MessageDetailFragment : BaseFragment() {
         binding.lifecycleOwner = this
         binding.viewModel = detailViewModel
 
-        detailViewModel.setUser(args.user)
+        activity?.title = args.message.subject
+
+        detailViewModel.setUser(args.message)
 
         return binding.root
 

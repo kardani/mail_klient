@@ -21,7 +21,7 @@
         android:label="Detail" >
 
         <argument
-            android:name="user"
+            android:name="message"
             app:argType="com.masoudk.ui.model.Message" />
 
     </fragment>
