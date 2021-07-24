@@ -1,4 +1,4 @@
-package com.masoudk.ui
+package com.masoudk.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.masoudk.ui.databinding.LayoutUserItemBinding
-import com.masoudk.repository.model.Message
+import com.masoudk.ui.model.Message
 
-class UsersAdapter constructor(private val clickListener: UsersClickListener?) : ListAdapter<Message, UsersAdapter.ViewHolder>(DiffCallBack){
+class MessagesAdapter constructor(private val clickListener: UsersClickListener?) : ListAdapter<Message, MessagesAdapter.ViewHolder>(
+    DiffCallBack
+){
 
     companion object DiffCallBack : DiffUtil.ItemCallback<Message>(){
         override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
@@ -48,7 +50,7 @@ class UsersAdapter constructor(private val clickListener: UsersClickListener?) :
 
         companion object{
 
-            fun from(parent: ViewGroup) : ViewHolder{
+            fun from(parent: ViewGroup) : ViewHolder {
                 val inflater = LayoutInflater.from(parent.context)
                 val binding = LayoutUserItemBinding.inflate(inflater, parent, false)
                 return ViewHolder(binding)
@@ -65,14 +67,14 @@ interface UsersClickListener{
 }
 
 @BindingAdapter("bindUsers")
-fun bindUsersAdapter(recyclerView: RecyclerView, items: ArrayList<Message>?){
+fun bindUsersAdapter(recyclerView: RecyclerView, items: List<Message>?){
 
     if(recyclerView.adapter == null){
         return
     }
 
     items?.let {
-        (recyclerView.adapter as UsersAdapter).submitList(it)
+        (recyclerView.adapter as MessagesAdapter).submitList(it)
     }
 
 }

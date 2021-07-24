@@ -22,7 +22,7 @@
 
         <argument
             android:name="user"
-            app:argType="com.masoudk.repository.Name" />
+            app:argType="com.masoudk.ui.model.Message" />
 
     </fragment>
 

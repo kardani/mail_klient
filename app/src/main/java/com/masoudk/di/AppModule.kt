@@ -1,7 +1,7 @@
 package com.masoudk.di
 
 import com.masoudk.datasource.network.RemoteDataSourceImpl
-import com.masoudk.datasource.network.UsersEntpoint
+import com.masoudk.datasource.network.EmailEndpoint
 import com.masoudk.domain.MessageRepository
 import com.masoudk.repository.MessageRepositoryImpl
 import com.masoudk.repository.datasource.RemoteDataSource
@@ -23,6 +23,6 @@ private fun provideUsersRepository(remoteDataSource: RemoteDataSource) : Message
     return MessageRepositoryImpl(remoteDataSource)
 }
 
-private fun provideUsersDataSource(usersEndpoint: UsersEntpoint) : RemoteDataSource{
-    return RemoteDataSourceImpl(usersEndpoint)
+private fun provideUsersDataSource(emailEndpoint: EmailEndpoint) : RemoteDataSource{
+    return RemoteDataSourceImpl(emailEndpoint)
 }

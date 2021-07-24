@@ -3,7 +3,7 @@
     <data>
         <variable
             name="user"
-            type="com.masoudk.repository.model.Message" />
+            type="com.masoudk.ui.model.Message" />
     </data>
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:text="@{user.getFullName()}"
+                android:text="@{user.subject}"
                 tools:text="Dou Jons"
                 />
 
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textSize="12sp"
-                android:text="@{user.email}"
+                android:text="@{user.from}"
                 tools:text="blabla@blah.com"
                 />
 

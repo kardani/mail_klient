@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.masoudk.repository.model.Message
-import com.masoudk.ui.UsersAdapter
-import com.masoudk.ui.UsersClickListener
 import com.masoudk.ui.base.BaseFragment
 import com.masoudk.ui.databinding.FragmentUsersBinding
+import com.masoudk.ui.model.Message
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class UsersFragment : BaseFragment(), UsersClickListener {
@@ -26,7 +24,7 @@ class UsersFragment : BaseFragment(), UsersClickListener {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        binding.usersRV.adapter = UsersAdapter(this)
+        binding.usersRV.adapter = MessagesAdapter(this)
 
         return binding.root
 
@@ -35,9 +33,5 @@ class UsersFragment : BaseFragment(), UsersClickListener {
     override fun click(user: Message) {
         val destination = UsersFragmentDirections.actionUsersFragmentToUserDetailFragment(user)
         findNavController().navigate(destination)
-//        TODO("Not yet implemented")
-//        val intent = Intent(this, UserActivity::class.java)
-//        intent.putExtra("user", Gson().toJson(user))
-//        startActivity(intent)
     }
 }

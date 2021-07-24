@@ -3,7 +3,7 @@ package com.masoudk.ui.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.masoudk.repository.model.Message
+import com.masoudk.ui.model.Message
 
 class UserViewModel : ViewModel() {
 

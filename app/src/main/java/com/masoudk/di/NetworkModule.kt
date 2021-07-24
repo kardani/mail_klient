@@ -1,6 +1,6 @@
 package com.masoudk.di
 
-import com.masoudk.datasource.network.UsersEntpoint
+import com.masoudk.datasource.network.EmailEndpoint
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -16,7 +16,7 @@ val networkModule = module {
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-    return Retrofit.Builder().baseUrl("https://reqres.in/api/").client(okHttpClient)
+    return Retrofit.Builder().baseUrl("https://qv967.mocklab.io/").client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create()).build()
 }
 
@@ -38,4 +38,4 @@ fun provideOkHttpLoggingInterceptor() : HttpLoggingInterceptor {
     return httpLoggingInterceptor
 }
 
-fun provideStudentEndpoint(retrofit: Retrofit): UsersEntpoint = retrofit.create(UsersEntpoint::class.java)
+fun provideStudentEndpoint(retrofit: Retrofit): EmailEndpoint = retrofit.create(EmailEndpoint::class.java)

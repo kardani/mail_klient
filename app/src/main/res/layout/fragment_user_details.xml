@@ -21,7 +21,6 @@
         android:layout_height="200dp"
         android:scaleType="fitCenter"
         android:layout_marginTop="16dp"
-        app:imageUrl="@{viewModel.user.avatar}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +29,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{viewModel.user.getFullName()}"
+        android:text="@{viewModel.user.subject}"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
@@ -42,7 +41,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{viewModel.user.email}"
+        android:text="@{viewModel.user.from}"
         android:textSize="14sp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
