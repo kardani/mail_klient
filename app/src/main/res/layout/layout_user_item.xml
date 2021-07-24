@@ -16,7 +16,7 @@
             android:id="@+id/view_unread"
             android:layout_width="@dimen/unread_icon_size"
             android:layout_height="@dimen/unread_icon_size"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@drawable/unread_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="@dimen/space_standard"
-            tools:src="@tools:sample/avatars"
+            android:src="@drawable/avatar_bg"
             />
 
         <TextView
@@ -41,14 +41,13 @@
             android:textSize="@dimen/text_size_big_xxx"
             android:textStyle="bold"
             android:textColor="@color/textColorDark"
-            android:text="@{user.from}"
+            android:text="@{user.shortName}"
             android:gravity="center"
             tools:text="DJ"
             app:layout_constraintStart_toStartOf="@id/sender_avatar"
             app:layout_constraintEnd_toEndOf="@id/sender_avatar"
             app:layout_constraintTop_toTopOf="@id/sender_avatar"
             app:layout_constraintBottom_toBottomOf="@id/sender_avatar"
-            android:visibility="gone"
             />
 
 
@@ -82,6 +81,7 @@
             app:layout_constraintTop_toBottomOf="@id/sender_name"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="@dimen/space_standard"
+            android:layout_marginEnd="@dimen/space_standard"
             app:layout_constraintHeight_percent="0.33"
             />
 
@@ -96,8 +96,11 @@
             app:layout_constraintTop_toBottomOf="@id/subject"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="@dimen/space_standard"
+            android:layout_marginEnd="@dimen/space_standard"
             app:layout_constraintHeight_percent="0.33"
-            android:lines="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constrainedWidth="true"
             />
 
         <TextView

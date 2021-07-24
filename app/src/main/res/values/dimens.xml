@@ -17,7 +17,7 @@
     <dimen name="radius_big">16dp</dimen>
 
 
-    <dimen name="unread_icon_size">20dp</dimen>
+    <dimen name="unread_icon_size">9dp</dimen>
     <dimen name="sender_avatar_list">40dp</dimen>
 
 

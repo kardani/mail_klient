@@ -34,12 +34,21 @@ data class Message(
 
     val shortContent : String
         get() {
-            return if(content.length < 50){
+            return if(content.length < 100){
                 content
             }else{
-                content.substring(0..50)
+                content.substring(0..99)
             }
     }
+
+    val shortName : String
+        get() {
+            return if(from.isEmpty()){
+                ""
+            }else{
+                from.substring(0..0).uppercase(Locale.getDefault())
+            }
+        }
 
     val formattedDate : String
         get() {
