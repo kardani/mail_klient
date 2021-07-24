@@ -2,6 +2,7 @@ package com.masoudk
 
 import android.app.Application
 import com.masoudk.di.appModule
+import com.masoudk.di.localPersistenceModule
 import com.masoudk.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -18,7 +19,8 @@ class App : Application() {
             koin.loadModules(
                 listOf(
                     appModule,
-                    networkModule
+                    networkModule,
+                    localPersistenceModule
                 )
             )
             koin.createRootScope()

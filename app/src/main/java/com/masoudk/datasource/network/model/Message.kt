@@ -8,7 +8,9 @@ data class Message(
     val from: String,
     val email: String?,
     val subject: String,
-    val content: String
+    val content: String,
+    val isRead: Boolean,
+    val isDelete: Boolean
     )
 
 fun Message.mapToDomain() : DomainMessage {
@@ -18,7 +20,9 @@ fun Message.mapToDomain() : DomainMessage {
         from = this.from,
         email = this.email ?: "",
         subject = this.subject,
-        content = this.content
+        content = this.content,
+        isRead = this.isRead,
+        isDelete = this.isDelete
      )
 }
 

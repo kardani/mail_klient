@@ -1,6 +1,7 @@
 package com.masoudk.ui.model
 
 import android.os.Parcelable
+import com.masoudk.datasource.network.model.mapToDomain
 import com.masoudk.utils.toDate
 import com.masoudk.repository.model.Message as DomainMessage
 import kotlinx.android.parcel.Parcelize
@@ -13,7 +14,9 @@ data class Message(
     val from: String,
     val email: String,
     val subject: String,
-    val content: String
+    val content: String,
+    val isRead: Boolean,
+    val isDelete: Boolean
     ): Parcelable{
 
     val shortContent : String
@@ -43,7 +46,9 @@ fun DomainMessage.mapToView() : Message {
         from = this.from,
         email = this.email,
         subject = this.subject,
-        content = this.content
+        content = this.content,
+        isRead = this.isRead,
+        isDelete = this.isDelete
     )
 }
 

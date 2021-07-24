@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Mail Client"
+rootProject.name = "Mail Klient"

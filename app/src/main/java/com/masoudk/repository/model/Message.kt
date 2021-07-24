@@ -6,4 +6,6 @@ data class Message(
     val from: String,
     val email: String,
     val subject: String,
-    val content: String)
+    val content: String,
+    val isRead: Boolean,
+    val isDelete: Boolean)
