@@ -161,6 +161,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:paddingStart="@dimen/space_standard"
             android:paddingEnd="@dimen/space_standard"
+            android:onClick="@{() -> viewModel.unreadClick()}"
             />
 
         <TextView
@@ -168,7 +169,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:textSize="@dimen/text_size_standard"
-            android:text="Delete"
+            android:text="@string/delete"
             android:textStyle="bold"
             android:textColor="@android:color/holo_red_dark"
             android:gravity="center_vertical"
@@ -177,6 +178,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="@{() -> viewModel.deleteClick()}"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

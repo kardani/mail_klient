@@ -1,5 +1,6 @@
 package com.masoudk.datasource.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.masoudk.datasource.local.model.DBMessage
 
@@ -8,6 +9,9 @@ interface MessagesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(message: DBMessage) : Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(messages: List<DBMessage>) : Long
 
     @Update
     suspend fun update(message: DBMessage)
@@ -19,11 +23,14 @@ interface MessagesDao {
     fun deleteAll()
 
     @Query("SELECT * FROM message WHERE isDelete <> 1 ORDER BY date DESC")
-    suspend fun getAll(): List<DBMessage>
+    suspend fun getAll(): LiveData<List<DBMessage>>
 
     @Query("SELECT * FROM message WHERE isDelete = 1 ORDER BY date DESC")
-    suspend fun getTrash(): List<DBMessage>
+    suspend fun getTrash(): LiveData<List<DBMessage>>
 
     @Query("SELECT * FROM message WHERE id = :id LIMIT 1")
     suspend fun getById(id: String): DBMessage?
+
+    @Query("SELECT * FROM message WHERE id = :id LIMIT 1")
+    suspend fun getByIdLive(id: String): LiveData<DBMessage>?
 }

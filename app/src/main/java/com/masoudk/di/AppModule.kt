@@ -19,7 +19,7 @@ val appModule = module {
     single {provideLocalDataSource(get())}
     single {provideUsersRepository(get(), get())}
     viewModel { InboxViewModel(get()) }
-    viewModel { MessageDetailViewModel() }
+    viewModel { MessageDetailViewModel(get()) }
 
 }
 

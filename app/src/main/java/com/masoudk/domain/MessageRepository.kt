@@ -7,4 +7,6 @@ interface MessageRepository {
 
     suspend fun getMessages(page: Int) : ResultWrapper<List<Message>>
 
+    suspend fun setMessageStatus(id: String, read: Boolean) : Boolean
+
 }

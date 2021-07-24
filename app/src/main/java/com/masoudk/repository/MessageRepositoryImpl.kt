@@ -15,4 +15,8 @@ class MessageRepositoryImpl constructor(
         return remoteDataSource.getMessages(page)
     }
 
+    override suspend fun setMessageStatus(id: String, read: Boolean): Boolean {
+        return localDataSource.setMessageStatus(id, read)
+    }
+
 }

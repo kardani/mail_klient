@@ -31,6 +31,8 @@ fun DomainMessage.mapToLocal() : DBMessage {
     )
 }
 
+fun List<DomainMessage>.mapToLocal() : List<DBMessage>  = this.map { it.mapToLocal() }
+
 fun DBMessage.mapToDomain() : DomainMessage {
     return DomainMessage(
         id = this.id,
