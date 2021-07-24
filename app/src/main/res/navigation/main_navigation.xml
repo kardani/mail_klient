@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/usersFragment"
-        android:name="com.masoudk.ui.list.UsersFragment"
+        android:name="com.masoudk.ui.inbox.InboxFragment"
         android:label="Users" >
 
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/userDetailFragment"
-        android:name="com.masoudk.ui.detail.UserDetailFragment"
+        android:name="com.masoudk.ui.detail.MessageDetailFragment"
         android:label="Detail" >
 
         <argument

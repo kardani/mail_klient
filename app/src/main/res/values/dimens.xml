@@ -1,0 +1,25 @@
+<resources>
+
+    <dimen name="space_small">4dp</dimen>
+    <dimen name="space_standard">8dp</dimen>
+    <dimen name="space_big">16dp</dimen>
+    <dimen name="space_big_xx">32dp</dimen>
+    <dimen name="space_big_xxx">64dp</dimen>
+
+    <dimen name="text_size_small">10sp</dimen>
+    <dimen name="text_size_standard">12sp</dimen>
+    <dimen name="text_size_big">14sp</dimen>
+    <dimen name="text_size_big_xx">16sp</dimen>
+    <dimen name="text_size_big_xxx">18sp</dimen>
+
+    <dimen name="radius_small">4dp</dimen>
+    <dimen name="radius_standard">8dp</dimen>
+    <dimen name="radius_big">16dp</dimen>
+
+
+    <dimen name="unread_icon_size">20dp</dimen>
+    <dimen name="sender_avatar_list">40dp</dimen>
+
+
+
+</resources>

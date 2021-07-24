@@ -1,4 +1,4 @@
-package com.masoudk.ui.list
+package com.masoudk.ui.inbox
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import com.masoudk.ui.model.mapToView
 import com.masoudk.utils.ResultWrapper
 import kotlinx.coroutines.launch
 
-class UsersViewModel constructor(private val namesRepository: MessageRepository) : BaseViewModel() {
+class InboxViewModel constructor(private val namesRepository: MessageRepository) : BaseViewModel() {
 
 
     private var _users = MutableLiveData<List<Message>>()

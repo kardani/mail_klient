@@ -24,3 +24,8 @@ fun String.toDate(dateFormat: String = "yyyy-MM-dd"): Date? {
     val parser = SimpleDateFormat(dateFormat, Locale.getDefault())
     return parser.parse(this)
 }
+
+fun Date.format(format: String = "dd-MM-yyyy") : String {
+    val f = SimpleDateFormat(format, Locale.US)
+    return f.format(this)
+}

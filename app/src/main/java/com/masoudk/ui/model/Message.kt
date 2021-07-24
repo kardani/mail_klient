@@ -1,7 +1,9 @@
 package com.masoudk.ui.model
 
 import android.os.Parcelable
+import androidx.recyclerview.widget.DiffUtil
 import com.masoudk.datasource.network.model.mapToDomain
+import com.masoudk.utils.format
 import com.masoudk.utils.toDate
 import com.masoudk.repository.model.Message as DomainMessage
 import kotlinx.android.parcel.Parcelize
@@ -19,6 +21,17 @@ data class Message(
     val isDelete: Boolean
     ): Parcelable{
 
+    companion object DiffCallBack : DiffUtil.ItemCallback<Message>(){
+        override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
+            return oldItem == newItem
+        }
+
+    }
+
     val shortContent : String
         get() {
             return if(content.length < 50){
@@ -30,11 +43,7 @@ data class Message(
 
     val formattedDate : String
         get() {
-            return if(content.length < 50){
-                content
-            }else{
-                content.substring(0..50)
-            }
+            return date?.format() ?: "N/A"
         }
 
 }

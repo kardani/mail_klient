@@ -1,4 +1,4 @@
-package com.masoudk.ui.list
+package com.masoudk.ui.inbox
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,19 +10,8 @@ import com.masoudk.ui.databinding.LayoutUserItemBinding
 import com.masoudk.ui.model.Message
 
 class MessagesAdapter constructor(private val clickListener: UsersClickListener?) : ListAdapter<Message, MessagesAdapter.ViewHolder>(
-    DiffCallBack
+    Message.DiffCallBack
 ){
-
-    companion object DiffCallBack : DiffUtil.ItemCallback<Message>(){
-        override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
-            return oldItem == newItem
-        }
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)

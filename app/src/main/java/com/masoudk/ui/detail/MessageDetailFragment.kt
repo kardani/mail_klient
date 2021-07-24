@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.masoudk.ui.base.BaseFragment
-import com.masoudk.ui.databinding.FragmentUserDetailsBinding
+import com.masoudk.ui.databinding.FragmentMessageDetailsBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class UserDetailFragment : BaseFragment() {
+class MessageDetailFragment : BaseFragment() {
 
-    val viewModel: UserViewModel by viewModel()
+    val detailViewModel: MessageDetailViewModel by viewModel()
 
-    val args : UserDetailFragmentArgs by navArgs()
+    val args : MessageDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,11 +21,11 @@ class UserDetailFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val binding : FragmentUserDetailsBinding = FragmentUserDetailsBinding.inflate(inflater, container, false)
+        val binding : FragmentMessageDetailsBinding = FragmentMessageDetailsBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+        binding.viewModel = detailViewModel
 
-        viewModel.setUser(args.user)
+        detailViewModel.setUser(args.user)
 
         return binding.root
 

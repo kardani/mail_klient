@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.masoudk.ui.list.UsersViewModel" />
+            type="com.masoudk.ui.inbox.InboxViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
