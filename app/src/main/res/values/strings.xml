@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mail Client!</string>
+    <string name="app_name">Mail Klient!</string>
     <string name="unread">Unread</string>
     <string name="delete">Delete</string>
 </resources>
