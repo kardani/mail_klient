@@ -19,7 +19,7 @@
         android:id="@+id/usersRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:bindUsers="@{viewModel.users}"
+        app:bindUsers="@{viewModel.messages}"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         tools:listitem="@layout/layout_message_item"

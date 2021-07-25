@@ -1,5 +1,6 @@
 package com.masoudk.utils
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -28,4 +29,13 @@ fun String.toDate(dateFormat: String = "yyyy-MM-dd"): Date? {
 fun Date.format(format: String = "dd-MM-yyyy") : String {
     val f = SimpleDateFormat(format, Locale.US)
     return f.format(this)
+}
+
+@BindingAdapter("invisible")
+fun View.invisible(invisible : Boolean){
+    if(invisible){
+        this.visibility = View.INVISIBLE
+    }else{
+        this.visibility = View.VISIBLE
+    }
 }

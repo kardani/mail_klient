@@ -1,5 +1,6 @@
 package com.masoudk.repository
 
+import androidx.lifecycle.LiveData
 import com.masoudk.repository.datasource.RemoteDataSource
 import com.masoudk.domain.MessageRepository
 import com.masoudk.repository.datasource.LocalDataSource
@@ -12,11 +13,24 @@ class MessageRepositoryImpl constructor(
     ) : MessageRepository{
 
     override suspend fun getMessages(page: Int): ResultWrapper<List<Message>> {
-        return remoteDataSource.getMessages(page)
+        val response = remoteDataSource.getMessages(page)
+        if (response is ResultWrapper.Success){
+            localDataSource.saveMessage(response.value)
+        }
+
+        return response
+    }
+
+    override suspend fun getMessagesLive(): LiveData<List<Message>> {
+        return localDataSource.getInbox(1)
     }
 
     override suspend fun setMessageStatus(id: String, read: Boolean): Boolean {
         return localDataSource.setMessageStatus(id, read)
+    }
+
+    override suspend fun moveMessageToTrash(id: String): Boolean {
+        return localDataSource.moveMessageToTrash(id)
     }
 
 }

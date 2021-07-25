@@ -2,6 +2,7 @@ package com.masoudk.ui.inbox
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
 import com.masoudk.domain.MessageRepository
 import com.masoudk.ui.model.Message
 import com.masoudk.ui.base.BaseViewModel
@@ -13,21 +14,24 @@ class InboxViewModel constructor(private val namesRepository: MessageRepository)
 
 
     private var _users = MutableLiveData<List<Message>>()
-    val users : LiveData<List<Message>> = _users
+    var messages : LiveData<List<Message>?>? = null
 
     init {
 
         _users.value = arrayListOf()
 
         ioScope.launch {
+
+            messages = namesRepository.getMessagesLive().map { it.mapToView() }
+
             val response = namesRepository.getMessages(1)
             viewModelScope.launch {
 
-                when(response){
-                    is ResultWrapper.Success -> {_users.postValue(response.value.mapToView())}
-                    is ResultWrapper.GenericError -> {}
-                    is ResultWrapper.NetworkError -> {}
-                }
+//                when(response){
+//                    is ResultWrapper.Success -> {_users.postValue(response.value.mapToView())}
+//                    is ResultWrapper.GenericError -> {}
+//                    is ResultWrapper.NetworkError -> {}
+//                }
 
             }
         }

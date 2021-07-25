@@ -22,4 +22,5 @@ interface LocalDataSource {
 
     suspend fun deleteMessage(id: String) : Boolean
 
+    suspend fun moveMessageToTrash(id: String) : Boolean
 }
