@@ -2,6 +2,7 @@ package com.masoudk.datasource.local
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.PagingSource
 import androidx.room.*
 import com.masoudk.datasource.local.model.DBMessage
 
@@ -12,7 +13,7 @@ interface MessagesDao {
     fun insert(message: DBMessage)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(messages: List<DBMessage>)
+    fun insert(messages: List<DBMessage>) : LongArray
 
     @Update
     fun update(message: DBMessage)
@@ -34,4 +35,8 @@ interface MessagesDao {
 
     @Query("SELECT * FROM message WHERE id = :id LIMIT 1")
     fun getByIdLive(id: String): LiveData<DBMessage>
+
+
+    @Query("SELECT * FROM message WHERE isDelete <> 1 ORDER BY date DESC")
+    fun getInbox(): PagingSource<Int, DBMessage>
 }

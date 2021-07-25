@@ -5,6 +5,6 @@ import com.masoudk.utils.ResultWrapper
 
 interface RemoteDataSource {
 
-    suspend fun getMessages(page: Int) : ResultWrapper<List<Message>>
+    suspend fun getMessages(id: String) : ResultWrapper<List<Message>>
 
 }

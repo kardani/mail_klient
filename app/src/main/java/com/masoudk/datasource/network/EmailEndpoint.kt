@@ -7,7 +7,7 @@ import retrofit2.http.Path
 
 interface EmailEndpoint {
 
-    @GET("messages/{page}")
-    suspend fun getMessages(@Path("page") page: Int) : List<Message>
+    @GET("messages/{id}")
+    suspend fun getMessages(@Path("id") id: String) : List<Message>
 
 }
