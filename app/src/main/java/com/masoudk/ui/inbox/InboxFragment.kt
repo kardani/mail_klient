@@ -1,6 +1,7 @@
 package com.masoudk.ui.inbox
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ class InboxFragment : BaseFragment(), UsersClickListener {
 
     val viewModel: InboxViewModel by viewModel()
     private val adapter = MessagesPagingAdapter(this)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,10 +29,12 @@ class InboxFragment : BaseFragment(), UsersClickListener {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        binding.usersRV.adapter = adapter
+
+        binding.usersRV.adapter = adapter.withLoadStateFooter(LoaderStateAdapter{ adapter.retry() })
 
         lifecycleScope.launch {
-            viewModel.jdjsh.collectLatest {
+            viewModel.messages.collectLatest {
+                Log.d("items", it.toString())
                 adapter.submitData(it)
             }
         }
