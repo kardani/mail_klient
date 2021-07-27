@@ -16,15 +16,9 @@ interface LocalDataSource {
 
     suspend fun updateMessage(message: Message) : Message
 
-    suspend fun getInbox(page: Int) : LiveData<List<Message>>
-
     fun getInboxPagedSource() : PagingSource<Int, DBMessage>
 
     fun getTrashPagedSource() : PagingSource<Int, DBMessage>
-
-    suspend fun getTrash(page: Int) : LiveData<List<Message>>
-
-    suspend fun getMessageById(id: String) : LiveData<Message>?
 
     suspend fun deleteMessage(id: String) : Boolean
 

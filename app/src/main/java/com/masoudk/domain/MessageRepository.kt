@@ -11,11 +11,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MessageRepository {
 
-    suspend fun simulateReceiveNewMessage(message: Message)
-
-    suspend fun getMessages(page: Int) : ResultWrapper<List<Message>>
-
-    suspend fun getMessagesLive() : LiveData<List<Message>>
+    suspend fun saveMessage(message: Message)
 
     suspend fun setMessageStatus(id: String, read: Boolean) : Boolean
 

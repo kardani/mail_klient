@@ -23,7 +23,7 @@ class InboxViewModel constructor(private val namesRepository: MessageRepository)
     fun simulateReceiveNewMessage(){
         ioScope.launch {
 
-            namesRepository.simulateReceiveNewMessage(Message.dummy().mapToDomain())
+            namesRepository.saveMessage(Message.dummy().mapToDomain())
             
         }
     }

@@ -15,7 +15,6 @@ package com.masoudk.ui.base
 
 import android.util.Log
 import androidx.annotation.MainThread
-import androidx.collection.ArraySet
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
