@@ -2,4 +2,6 @@
     <string name="app_name">Mail Klient!</string>
     <string name="unread">Unread</string>
     <string name="delete">Delete</string>
+    <string name="button_retry">Retry</string>
+    <string name="label_error">Error in loading data!</string>
 </resources>

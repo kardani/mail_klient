@@ -2,6 +2,8 @@ package com.masoudk.datasource.local
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
+import androidx.paging.PagingSource
+import com.masoudk.datasource.local.model.DBMessage
 import com.masoudk.datasource.local.model.mapToDomain
 import com.masoudk.datasource.local.model.mapToLocal
 import com.masoudk.repository.datasource.LocalDataSource
@@ -34,6 +36,10 @@ class LocalDataSourceImpl(private val messagesDao: MessagesDao) : LocalDataSourc
 
     override suspend fun getInbox(page: Int): LiveData<List<Message>> {
         return messagesDao.getAll().map { it.mapToDomain() }
+    }
+
+    override fun getInboxPagedSource(): PagingSource<Int, DBMessage> {
+        return messagesDao.getInbox()
     }
 
     override suspend fun getTrash(page: Int): LiveData<List<Message>> {
