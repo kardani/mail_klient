@@ -11,6 +11,7 @@ import com.masoudk.repository.datasource.RemoteDataSource
 import com.masoudk.utils.ResultWrapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import java.lang.Exception
 
 @OptIn(ExperimentalPagingApi::class)
@@ -26,6 +27,8 @@ class MessagesRemoteMediator(
 
         try{
 
+            Timber.tag("MessagesRemoteMediator").d("LoadType: ${loadType.name}")
+
             val id = when (loadType) {
                 LoadType.REFRESH -> ""
                 LoadType.APPEND -> {
@@ -34,6 +37,8 @@ class MessagesRemoteMediator(
                 }
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
             }
+
+            Timber.tag("MessagesRemoteMediator").d("ID: $id")
 
             val response = remoteDataSource.getMessages(id)
 

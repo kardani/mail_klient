@@ -10,6 +10,6 @@ import kotlinx.coroutines.flow.Flow
 
 class InboxViewModel constructor(namesRepository: MessageRepository) : BaseViewModel() {
 
-    val messages : Flow<PagingData<DBMessage>> = namesRepository.getInbox(PagingConfig(20)).cachedIn(viewModelScope)
+    val messages : Flow<PagingData<DBMessage>> = namesRepository.getInbox(PagingConfig(10)).cachedIn(viewModelScope)
 
 }
