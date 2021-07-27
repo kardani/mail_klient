@@ -18,6 +18,9 @@ class MessageRepositoryImpl constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
     ) : MessageRepository{
+    override suspend fun simulateReceiveNewMessage(message: Message) {
+        localDataSource.saveMessage(message)
+    }
 
     override suspend fun getMessages(page: Int): ResultWrapper<List<Message>> {
         val response = remoteDataSource.getMessages("")

@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil
 import com.masoudk.datasource.network.model.mapToDomain
 import com.masoudk.utils.format
+import com.masoudk.utils.randomString
 import com.masoudk.utils.toDate
 import com.masoudk.repository.model.Message as DomainMessage
 import kotlinx.android.parcel.Parcelize
@@ -21,16 +22,33 @@ data class Message(
     val isDelete: Boolean
     ): Parcelable{
 
-    companion object DiffCallBack : DiffUtil.ItemCallback<Message>(){
-        override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
-            return oldItem.id == newItem.id
-        }
+    companion object {
+        val DiffCallBack = object : DiffUtil.ItemCallback<Message>()
+            {
+                override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
+                    return oldItem.id == newItem.id
+                }
 
-        override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
-            return oldItem == newItem
-        }
+                override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
+                    return oldItem == newItem
+                }
+            }
+
+        fun dummy() = Message(
+            id = UUID.randomUUID().toString(),
+            date = Date(),
+            from = "From Dummy",
+            email = "${randomString(14)}@mk.com",
+            subject = "Subject ${randomString(14)}",
+            content = "Content\n\n ${randomString(200)}",
+            isRead = false,
+            isDelete = false
+        )
+
 
     }
+
+
 
     val shortContent : String
         get() {
@@ -71,3 +89,16 @@ fun DomainMessage.mapToView() : Message {
 }
 
 fun List<DomainMessage>.mapToView() : List<Message>  = this.map { it.mapToView() }
+
+fun Message.mapToDomain() : DomainMessage {
+    return DomainMessage(
+        id = this.id,
+        date = this.date?.format("yyyy-MM-dd") ?: "",
+        from = this.from,
+        email = this.email,
+        subject = this.subject,
+        content = this.content,
+        isRead = this.isRead,
+        isDelete = this.isDelete
+    )
+}

@@ -5,6 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="baseBackground">#393939</color>
+    <color name="menu">#FFFFFF</color>
 
     <color name="textColorLight">@android:color/black</color>
     <color name="textColorDark">#FFFFFF</color>
