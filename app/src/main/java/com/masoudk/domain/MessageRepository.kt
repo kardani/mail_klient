@@ -21,6 +21,6 @@ interface MessageRepository {
 
     suspend fun moveMessageToTrash(id: String) : Boolean
 
-    fun getInbox(config: PagingConfig) : Flow<PagingData<DBMessage>>
+    fun getInbox(config: PagingConfig) : Flow<PagingData<Message>>
 
 }

@@ -1,7 +1,6 @@
 package com.masoudk.ui.inbox
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,10 +13,10 @@ import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class InboxFragment : BaseFragment(), UsersClickListener {
+class InboxFragment : BaseFragment(), MessagesAdapter.ClickListener {
 
     val viewModel: InboxViewModel by viewModel()
-    private val adapter = MessagesPagingAdapter(this)
+    private val adapter = MessagesAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
@@ -62,8 +61,8 @@ class InboxFragment : BaseFragment(), UsersClickListener {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun click(message: Message) {
-        val destination = InboxFragmentDirections.actionUsersFragmentToUserDetailFragment(message)
+    override fun click(item: Message) {
+        val destination = InboxFragmentDirections.actionInboxFragmentToMessageDetailFragment(item)
         findNavController().navigate(destination)
     }
 }

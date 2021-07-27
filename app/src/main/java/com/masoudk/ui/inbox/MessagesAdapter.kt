@@ -2,13 +2,14 @@ package com.masoudk.ui.inbox
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.masoudk.datasource.local.model.DBMessage
 import com.masoudk.ui.databinding.LayoutMessageItemBinding
 import com.masoudk.ui.model.Message
 
-class MessagesAdapter constructor(private val clickListener: UsersClickListener?) : ListAdapter<Message, MessagesAdapter.ViewHolder>(
+class MessagesAdapter constructor(private val clickListener: ClickListener?) : PagingDataAdapter<Message, MessagesAdapter.ViewHolder>(
     Message.DiffCallBack
 ){
 
@@ -17,7 +18,7 @@ class MessagesAdapter constructor(private val clickListener: UsersClickListener?
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
+        val item = getItem(position) ?: return
 
         holder.bind(item)
 
@@ -46,21 +47,18 @@ class MessagesAdapter constructor(private val clickListener: UsersClickListener?
 
     }
 
-}
+    companion object DiffCallBack : DiffUtil.ItemCallback<DBMessage>(){
+        override fun areItemsTheSame(oldItem: DBMessage, newItem: DBMessage): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-interface UsersClickListener{
-    fun click(user: Message)
-}
+        override fun areContentsTheSame(oldItem: DBMessage, newItem: DBMessage): Boolean {
+            return oldItem == newItem
+        }
 
-@BindingAdapter("bindUsers")
-fun bindUsersAdapter(recyclerView: RecyclerView, items: List<Message>?){
-
-    if(recyclerView.adapter == null){
-        return
     }
 
-    items?.let {
-        (recyclerView.adapter as MessagesAdapter).submitList(it)
+    interface ClickListener{
+        fun click(item: Message)
     }
-
 }
