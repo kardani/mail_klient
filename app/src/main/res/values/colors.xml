@@ -13,4 +13,5 @@
     <color name="textColorLight">@android:color/white</color>
     <color name="textColorDark">#000D32</color>
     <color name="textColorMiddle">#A4000D32</color>
+    <color name="textColorGreen">@android:color/holo_green_dark</color>
 </resources>

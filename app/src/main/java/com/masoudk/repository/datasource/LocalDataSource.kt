@@ -30,4 +30,6 @@ interface LocalDataSource {
 
     suspend fun moveMessageToTrash(id: String) : Boolean
 
+    suspend fun restoreMessageToInbox(id: String) : Boolean
+
 }

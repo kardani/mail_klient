@@ -21,6 +21,10 @@ interface MessageRepository {
 
     suspend fun moveMessageToTrash(id: String) : Boolean
 
+    suspend fun restoreMessageToInbox(id: String) : Boolean
+
+    suspend fun deleteMessageCompletely(id: String) : Boolean
+
     fun getInbox(config: PagingConfig) : Flow<PagingData<Message>>
 
     fun getTrash(config: PagingConfig) : Flow<PagingData<Message>>

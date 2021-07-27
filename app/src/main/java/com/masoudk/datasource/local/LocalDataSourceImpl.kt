@@ -70,4 +70,12 @@ class LocalDataSourceImpl(private val messagesDao: MessagesDao) : LocalDataSourc
         return true
     }
 
+    override suspend fun restoreMessageToInbox(id: String): Boolean {
+        val record = messagesDao.getById(id) ?: return false
+
+        messagesDao.update(record.copy(isDelete = false))
+
+        return true
+    }
+
 }

@@ -41,6 +41,14 @@ class MessageRepositoryImpl constructor(
         return localDataSource.moveMessageToTrash(id)
     }
 
+    override suspend fun restoreMessageToInbox(id: String): Boolean {
+        return localDataSource.restoreMessageToInbox(id)
+    }
+
+    override suspend fun deleteMessageCompletely(id: String): Boolean {
+        return localDataSource.deleteMessage(id)
+    }
+
     @ExperimentalPagingApi
     override fun getInbox(config: PagingConfig): Flow<PagingData<Message>> {
         return Pager(
