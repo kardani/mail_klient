@@ -4,4 +4,5 @@
     <string name="delete">Delete</string>
     <string name="button_retry">Retry</string>
     <string name="label_error">Error in loading data!</string>
+    <string name="add">Add</string>
 </resources>

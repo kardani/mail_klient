@@ -26,6 +26,14 @@ fun String.toDate(dateFormat: String = "yyyy-MM-dd"): Date? {
     return parser.parse(this)
 }
 
+internal val alphanumeric = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+
+fun randomString(length: Int) : String {
+    return buildString {
+        repeat(length) { append(alphanumeric.random()) }
+    }
+}
+
 fun Date.format(format: String = "dd-MM-yyyy") : String {
     val f = SimpleDateFormat(format, Locale.US)
     return f.format(this)

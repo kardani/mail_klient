@@ -10,13 +10,13 @@
         android:label="Users" >
 
         <action
-            android:id="@+id/action_usersFragment_to_userDetailFragment"
-            app:destination="@id/userDetailFragment" />
+            android:id="@+id/action_inboxFragment_to_messageDetailFragment"
+            app:destination="@id/messageDetailFragment" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/userDetailFragment"
+        android:id="@+id/messageDetailFragment"
         android:name="com.masoudk.ui.detail.MessageDetailFragment"
         android:label="Detail" >
 

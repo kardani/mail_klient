@@ -5,6 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="baseBackground">#FFFFFF</color>
+    <color name="menu">#FFFFFF</color>
 
     <color name="unread">#ff0099cc</color>
     <color name="avatar">#ff6200EE</color>
