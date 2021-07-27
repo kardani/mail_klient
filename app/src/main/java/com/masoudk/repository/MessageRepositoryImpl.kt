@@ -52,4 +52,15 @@ class MessageRepositoryImpl constructor(
 
     }
 
+
+    @ExperimentalPagingApi
+    override fun getTrash(config: PagingConfig): Flow<PagingData<Message>> {
+        return Pager(
+            config = config
+        ){
+            localDataSource.getTrashPagedSource()
+        }.flow.map { it.map { dbMessage -> dbMessage.mapToDomain() } }
+
+    }
+
 }

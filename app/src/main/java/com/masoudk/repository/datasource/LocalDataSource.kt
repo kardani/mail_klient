@@ -20,6 +20,8 @@ interface LocalDataSource {
 
     fun getInboxPagedSource() : PagingSource<Int, DBMessage>
 
+    fun getTrashPagedSource() : PagingSource<Int, DBMessage>
+
     suspend fun getTrash(page: Int) : LiveData<List<Message>>
 
     suspend fun getMessageById(id: String) : LiveData<Message>?

@@ -42,6 +42,10 @@ class LocalDataSourceImpl(private val messagesDao: MessagesDao) : LocalDataSourc
         return messagesDao.getInbox()
     }
 
+    override fun getTrashPagedSource(): PagingSource<Int, DBMessage> {
+        return messagesDao.getTrash()
+    }
+
     override suspend fun getTrash(page: Int): LiveData<List<Message>> {
         return messagesDao.getAll().map { it.mapToDomain() }
     }

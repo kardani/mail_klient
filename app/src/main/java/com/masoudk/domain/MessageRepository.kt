@@ -23,4 +23,6 @@ interface MessageRepository {
 
     fun getInbox(config: PagingConfig) : Flow<PagingData<Message>>
 
+    fun getTrash(config: PagingConfig) : Flow<PagingData<Message>>
+
 }

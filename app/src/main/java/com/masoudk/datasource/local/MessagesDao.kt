@@ -27,9 +27,6 @@ interface MessagesDao {
     @Query("SELECT * FROM message WHERE isDelete <> 1 ORDER BY date DESC")
     fun getAll(): LiveData<List<DBMessage>>
 
-    @Query("SELECT * FROM message WHERE isDelete = 1 ORDER BY date DESC")
-    fun getTrash(): LiveData<List<DBMessage>>
-
     @Query("SELECT * FROM message WHERE id = :id LIMIT 1")
     suspend fun getById(id: String): DBMessage?
 
@@ -39,4 +36,7 @@ interface MessagesDao {
 
     @Query("SELECT * FROM message WHERE isDelete <> 1 ORDER BY date DESC")
     fun getInbox(): PagingSource<Int, DBMessage>
+
+    @Query("SELECT * FROM message WHERE isDelete = 1 ORDER BY date DESC")
+    fun getTrash(): PagingSource<Int, DBMessage>
 }

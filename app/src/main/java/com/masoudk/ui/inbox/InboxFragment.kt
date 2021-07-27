@@ -5,6 +5,8 @@ import android.view.*
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.masoudk.ui.R
+import com.masoudk.ui.adapter.LoaderStateAdapter
+import com.masoudk.ui.adapter.MessagesAdapter
 import com.masoudk.ui.base.BaseFragment
 import com.masoudk.ui.databinding.FragmentInboxBinding
 import com.masoudk.ui.model.Message
@@ -34,7 +36,7 @@ class InboxFragment : BaseFragment(), MessagesAdapter.ClickListener {
         binding.viewModel = viewModel
 
 
-        binding.usersRV.adapter = adapter.withLoadStateFooter(LoaderStateAdapter{ adapter.retry() })
+        binding.rvMessages.adapter = adapter.withLoadStateFooter(LoaderStateAdapter{ adapter.retry() })
 
         lifecycleScope.launch {
             viewModel.messages.collectLatest {
@@ -56,6 +58,8 @@ class InboxFragment : BaseFragment(), MessagesAdapter.ClickListener {
 
         if(item.itemId == R.id.add_message){
             viewModel.simulateReceiveNewMessage()
+        }else if(item.itemId == R.id.trash){
+            openTrash()
         }
 
         return super.onOptionsItemSelected(item)
@@ -63,6 +67,11 @@ class InboxFragment : BaseFragment(), MessagesAdapter.ClickListener {
 
     override fun click(item: Message) {
         val destination = InboxFragmentDirections.actionInboxFragmentToMessageDetailFragment(item)
+        findNavController().navigate(destination)
+    }
+
+    private fun openTrash(){
+        val destination = InboxFragmentDirections.actionInboxFragmentToTrashFragment()
         findNavController().navigate(destination)
     }
 }

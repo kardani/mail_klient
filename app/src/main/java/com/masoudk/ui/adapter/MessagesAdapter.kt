@@ -1,4 +1,4 @@
-package com.masoudk.ui.inbox
+package com.masoudk.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
