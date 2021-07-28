@@ -1,4 +1,4 @@
-package com.masoudk.ui.inbox
+package com.masoudk.ui.trash
 
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -13,19 +13,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class InboxViewModel constructor(private val namesRepository: MessageRepository) : BaseViewModel() {
+class TrashViewModel constructor(private val namesRepository: MessageRepository) : BaseViewModel() {
 
     val messages : Flow<PagingData<Message>> = namesRepository
-        .getInbox(PagingConfig(10))
+        .getTrash(PagingConfig(10))
         .map { it.map { message -> message.mapToView() } }
         .cachedIn(viewModelScope)
-
-    fun simulateReceiveNewMessage(){
-        ioScope.launch {
-
-            namesRepository.saveMessage(Message.dummy().mapToDomain())
-            
-        }
-    }
 
 }

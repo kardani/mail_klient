@@ -1,4 +1,4 @@
-package com.masoudk.ui.inbox
+package com.masoudk.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,19 +6,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.masoudk.datasource.local.model.DBMessage
-import com.masoudk.datasource.local.model.mapToDomain
 import com.masoudk.ui.R
-import com.masoudk.ui.databinding.LayoutMessageItemBinding
-import com.masoudk.ui.model.Message
-import com.masoudk.ui.model.mapToView
 
 class LoaderStateAdapter(private val retry: () -> Unit) :
     LoadStateAdapter<LoaderStateAdapter.LoaderViewHolder>() {

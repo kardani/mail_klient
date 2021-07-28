@@ -11,16 +11,18 @@ import kotlinx.coroutines.flow.Flow
 
 interface MessageRepository {
 
-    suspend fun simulateReceiveNewMessage(message: Message)
-
-    suspend fun getMessages(page: Int) : ResultWrapper<List<Message>>
-
-    suspend fun getMessagesLive() : LiveData<List<Message>>
+    suspend fun saveMessage(message: Message)
 
     suspend fun setMessageStatus(id: String, read: Boolean) : Boolean
 
     suspend fun moveMessageToTrash(id: String) : Boolean
 
+    suspend fun restoreMessageToInbox(id: String) : Boolean
+
+    suspend fun deleteMessageCompletely(id: String) : Boolean
+
     fun getInbox(config: PagingConfig) : Flow<PagingData<Message>>
+
+    fun getTrash(config: PagingConfig) : Flow<PagingData<Message>>
 
 }

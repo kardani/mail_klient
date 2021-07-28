@@ -2,7 +2,6 @@ package com.masoudk.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.masoudk.domain.MessageRepository
 import com.masoudk.ui.base.BaseViewModel
 import com.masoudk.ui.base.LiveEvent
@@ -42,13 +41,44 @@ class MessageDetailViewModel(
         }
     }
 
+    private fun restoreMessageToInbox(){
+        val messageId = message.value?.id ?: return
+
+        ioScope.launch {
+            repository.restoreMessageToInbox(messageId)
+            moveBackEvent.postValue(true)
+        }
+    }
+
+    private fun deleteMessageCompletely(){
+        val messageId = message.value?.id ?: return
+
+        ioScope.launch {
+            repository.deleteMessageCompletely(messageId)
+            moveBackEvent.postValue(true)
+        }
+    }
+
     fun unreadClick(){
         setMessageRead(false)
         moveBackEvent.postValue(true)
     }
 
+    fun restoreClick(){
+        restoreMessageToInbox()
+        moveBackEvent.postValue(true)
+    }
+
     fun deleteClick(){
-        moveMessageToTrash()
+
+        val message = message.value ?: return
+
+        if(message.isDelete){
+            deleteMessageCompletely()
+        }else{
+            moveMessageToTrash()
+        }
+
     }
 
 }

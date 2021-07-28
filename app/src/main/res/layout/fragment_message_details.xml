@@ -162,6 +162,25 @@
             android:paddingStart="@dimen/space_standard"
             android:paddingEnd="@dimen/space_standard"
             android:onClick="@{() -> viewModel.unreadClick()}"
+            invisible="@{viewModel.message.isDelete}"
+            />
+
+        <TextView
+            android:id="@+id/back_to_inbox"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textSize="@dimen/text_size_standard"
+            android:text="@string/restore"
+            android:textStyle="bold"
+            android:textColor="@color/textColorGreen"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingStart="@dimen/space_standard"
+            android:paddingEnd="@dimen/space_standard"
+            android:onClick="@{() -> viewModel.restoreClick()}"
+            invisible="@{!viewModel.message.isDelete}"
             />
 
         <TextView
