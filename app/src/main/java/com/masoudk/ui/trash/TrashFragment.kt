@@ -1,11 +1,10 @@
 package com.masoudk.ui.trash
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.masoudk.ui.R
 import com.masoudk.ui.adapter.LoaderStateAdapter
 import com.masoudk.ui.adapter.MessagesAdapter
 import com.masoudk.ui.base.BaseFragment
@@ -16,23 +15,18 @@ import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class TrashFragment : BaseFragment(), MessagesAdapter.ClickListener {
+class TrashFragment : BaseFragment<TrashViewModel>(R.layout.fragment_trash, TrashViewModel::class), MessagesAdapter.ClickListener {
 
-    val viewModel: TrashViewModel by viewModel()
+    override val viewModel: TrashViewModel by viewModel()
     private val adapter = MessagesAdapter(this)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val binding : FragmentTrashBinding = FragmentTrashBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
-
-
-        binding.rvMessages.adapter = adapter.withLoadStateFooter(LoaderStateAdapter{ adapter.retry() })
+        getSpecificBinding<FragmentTrashBinding>()?.also{
+            it.viewModel = this.viewModel
+            it.rvMessages.adapter = adapter.withLoadStateFooter(LoaderStateAdapter{ adapter.retry() })
+        }
 
         lifecycleScope.launch {
             viewModel.messages.collectLatest {
@@ -40,9 +34,6 @@ class TrashFragment : BaseFragment(), MessagesAdapter.ClickListener {
                 adapter.submitData(it)
             }
         }
-
-        return binding.root
-
     }
 
     override fun click(item: Message) {

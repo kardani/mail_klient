@@ -1,10 +1,8 @@
 package com.masoudk.repository.datasource
 
-import androidx.lifecycle.LiveData
 import androidx.paging.PagingSource
 import com.masoudk.datasource.local.model.DBMessage
 import com.masoudk.repository.model.Message
-import com.masoudk.utils.ResultWrapper
 
 interface LocalDataSource {
 

@@ -15,9 +15,10 @@ import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class InboxFragment : BaseFragment(), MessagesAdapter.ClickListener {
+class InboxFragment : BaseFragment<InboxViewModel>(R.layout.fragment_inbox, InboxViewModel::class), MessagesAdapter.ClickListener {
 
-    val viewModel: InboxViewModel by viewModel()
+    override val viewModel: InboxViewModel by viewModel()
+
     private val adapter = MessagesAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,18 +26,13 @@ class InboxFragment : BaseFragment(), MessagesAdapter.ClickListener {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val binding : FragmentInboxBinding = FragmentInboxBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
-
-
-        binding.rvMessages.adapter = adapter.withLoadStateFooter(LoaderStateAdapter{ adapter.retry() })
+        getSpecificBinding<FragmentInboxBinding>()?.also{
+            it.viewModel = this.viewModel
+            it.rvMessages.adapter = adapter.withLoadStateFooter(LoaderStateAdapter{ adapter.retry() })
+        }
 
         lifecycleScope.launch {
             viewModel.messages.collectLatest {
@@ -44,8 +40,6 @@ class InboxFragment : BaseFragment(), MessagesAdapter.ClickListener {
                 adapter.submitData(it)
             }
         }
-
-        return binding.root
 
     }
 
@@ -74,4 +68,5 @@ class InboxFragment : BaseFragment(), MessagesAdapter.ClickListener {
         val destination = InboxFragmentDirections.actionInboxFragmentToTrashFragment()
         findNavController().navigate(destination)
     }
+
 }
